@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:todos_application/Todos/component/button.dart';
+import 'package:todos_application/Todos/component/date_field.dart';
+import 'package:todos_application/Todos/component/date_group.dart';
+import 'package:todos_application/Todos/component/text_field.dart';
 
 class TodosScreen extends StatefulWidget {
   const TodosScreen({Key? key, required String title}) : super(key: key);
@@ -32,17 +36,16 @@ class _TodosScreenState extends State<TodosScreen> {
                 padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
-                  children: [
-                    const Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                  children: const [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                       child: Icon(
                         Icons.list_alt_rounded,
                         color: Colors.black,
                         size: 24,
                       ),
                     ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                       child: Text(
                         'Kegiatan',
@@ -55,44 +58,11 @@ class _TodosScreenState extends State<TodosScreen> {
                     ),
                     Expanded(
                       child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
-                        child: TextFormField(
-                          controller: TextEditingController(),
-                          obscureText: false,
-                          decoration: const InputDecoration(
+                        padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
+                        child: CustomTF(
                             hintText: 'Judul Kegiatan',
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 170, 171, 175),
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color.fromARGB(255, 170, 171, 175),
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            contentPadding:
-                                EdgeInsetsDirectional.fromSTEB(30, 30, 30, 30),
-                          ),
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                          ),
-                          textAlign: TextAlign.start,
-                          maxLines: 1,
-                        ),
+                            maxLines: 1,
+                            padding: EdgeInsets.all(30)),
                       ),
                     ),
                   ],
@@ -128,47 +98,16 @@ class _TodosScreenState extends State<TodosScreen> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(40, 10, 30, 0),
-                    child: TextFormField(
-                      controller: TextEditingController(),
-                      obscureText: false,
-                      decoration: const InputDecoration(
+                  const Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(40, 10, 30, 0),
+                    child: CustomTF(
                         hintText: 'Tambah Keterangan',
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(255, 170, 171, 175),
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(4.0),
-                            topRight: Radius.circular(4.0),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Color.fromARGB(255, 170, 171, 175),
-                            width: 2,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(4.0),
-                            topRight: Radius.circular(4.0),
-                          ),
-                        ),
-                        contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(40, 40, 40, 40),
-                      ),
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
-                      textAlign: TextAlign.start,
-                    ),
+                        maxLines: 3,
+                        padding: EdgeInsets.all(40)),
                   ),
                 ],
               ),
+              const DateGroup(),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                 child: Row(
@@ -179,176 +118,19 @@ class _TodosScreenState extends State<TodosScreen> {
                       width: 150,
                       height: 50,
                       decoration: const BoxDecoration(),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
-                          Icon(
-                            Icons.calendar_today,
-                            color: Colors.black,
-                            size: 18,
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                            child: Text(
-                              'Tanggal Mulai',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      child:
+                          // here we make a component
+                          const DateField(),
                     ),
                     Container(
-                      width: 150,
-                      height: 50,
-                      decoration: const BoxDecoration(),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: const [
-                          Icon(
-                            Icons.calendar_today_outlined,
-                            color: Colors.black,
-                            size: 18,
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                            child: Text(
-                              'Tanggal Selesai',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                        width: 150,
+                        height: 50,
+                        decoration: const BoxDecoration(),
+                        child: const DateField()),
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      width: 150,
-                      height: 50,
-                      decoration: const BoxDecoration(),
-                      child: TextFormField(
-                        controller: TextEditingController(),
-                        obscureText: false,
-                        decoration: const InputDecoration(
-                          hintText: '28-03-2022',
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.black26,
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(4.0),
-                              topRight: Radius.circular(4.0),
-                            ),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(4.0),
-                              topRight: Radius.circular(4.0),
-                            ),
-                          ),
-                        ),
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Container(
-                      width: 150,
-                      height: 50,
-                      decoration: const BoxDecoration(),
-                      child: TextFormField(
-                        controller: TextEditingController(),
-                        obscureText: false,
-                        decoration: const InputDecoration(
-                          hintText: '28-03-2022',
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.black26,
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(4.0),
-                              topRight: Radius.circular(4.0),
-                            ),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(4.0),
-                              topRight: Radius.circular(4.0),
-                            ),
-                          ),
-                        ),
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(10, 20, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SizedBox(
-                        width: 180,
-                        height: 40,
-                        child: OutlinedButton(
-                          onPressed: () {},
-                          child: const Text('Batal',
-                              style:
-                                  TextStyle(color: Colors.blue, fontSize: 18),
-                              textAlign: TextAlign.center),
-                          style:
-                              ElevatedButton.styleFrom(primary: Colors.white),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 180,
-                        height: 40,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: const Text(
-                            'Simpan',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          style: ElevatedButton.styleFrom(primary: Colors.blue),
-                        ),
-                      ),
-                    ],
-                  ))
+              CustomButton()
             ],
           ),
         ));
