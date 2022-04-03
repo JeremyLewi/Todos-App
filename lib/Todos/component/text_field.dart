@@ -4,6 +4,7 @@ class CustomTF extends StatelessWidget {
   final String hintText;
   final EdgeInsetsGeometry padding;
   final int maxLines;
+  
 
   const CustomTF(
       {Key? key,

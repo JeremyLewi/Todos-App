@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todos_application/Todos/component/button.dart';
+import 'package:todos_application/Todos/component/category.dart';
 import 'package:todos_application/Todos/component/date_field.dart';
 import 'package:todos_application/Todos/component/date_group.dart';
 import 'package:todos_application/Todos/component/text_field.dart';
@@ -130,6 +131,7 @@ class _TodosScreenState extends State<TodosScreen> {
                   ],
                 ),
               ),
+              Category(),
               CustomButton()
             ],
           ),
